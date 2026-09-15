@@ -41,6 +41,21 @@
             <a class="btn btn-primary" href="{% url 'movies.edit_review' id=template_data.movie.id review_id=review.id %}">Edit</a>
             <a class="btn btn-danger" href="{% url 'movies.delete_review' id=template_data.movie.id review_id=review.id %}">Delete</a>
             {% endif %}
+            {% if user.is_authenticated and user != review.user %}
+              {% if review.reported_by_me %}
+              <span class="badge bg-secondary mt-2">Reported</span>
+              {% else %}
+              <form method="POST" action="{% url 'movies.report_review' id=template_data.movie.id review_id=review.id %}" class="d-flex gap-2 mt-2 align-items-center flex-wrap">
+                {% csrf_token %}
+                <select name="reason" class="form-select form-select-sm w-auto" aria-label="Reason for reporting">
+                  {% for value, label in template_data.report_reasons %}
+                  <option value="{{ value }}">{{ label }}</option>
+                  {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-sm btn-outline-danger">Report</button>
+              </form>
+              {% endif %}
+            {% endif %}
           </li>
           {% endfor %}
         </ul>

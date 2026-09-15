@@ -1,0 +1,29 @@
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+local_settings.py
+
+# Virtual environments
+venv/
+venv312/
+.venv/
+env/
+
+# Environment variables (never commit credentials)
+.env
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# NOTE: media/ is deliberately NOT ignored. Uploaded movie posters are
+# tracked so they deploy with the code. Remove this exception if you
+# ever switch to proper file storage.
