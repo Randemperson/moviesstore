@@ -5,9 +5,14 @@ __pycache__/
 
 # Django
 *.log
-db.sqlite3
+# db.sqlite3 is intentionally TRACKED so the deployed site ships
+# with your movies and superuser. Edit data LOCALLY and push;
+# changing it on the server too will cause merge conflicts.
 db.sqlite3-journal
 local_settings.py
+
+# collectstatic output (regenerated on the server)
+staticfiles/
 
 # Virtual environments
 venv/
